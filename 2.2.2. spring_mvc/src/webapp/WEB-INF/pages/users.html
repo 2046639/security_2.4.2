@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <style type="text/css">
+        .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border-color: #e30e0e;
+            margin: auto;
+        }
+
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: #ccc;
+            color: #333;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: #ccc;
+            color: #333;
+            background-color: #f0f0f0;
+        }
+
+        .tg .tg-4eph {
+            background-color: #f9f9f9
+        }
+    </style>
+</head>
+<body>
+<h1 align="center">Users</h1>
+<table class="tg" align="center">
+    <thead>
+    <tr>
+        <th width="80">ID</th>
+        <th width="120">Name</th>
+        <th width="120">Password</th>
+        <th width="120">Role</th>
+        <th width="60">Edit it</th>
+        <th width="60">Delete it</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${listUsers}">
+        <td><span th:text="${user.id}"> ID </span></td>
+        <td><span th:text="${user.name}"> Name </span></td>
+        <td><span th:text="${user.password}"> Password </span></td>
+        <td><span th:text="${#strings.arrayJoin(user.roles,', ')}"></span></td>
+<!--        <td><span th:text="${user.roles}"> Role </span></td>-->
+        <!--        <td><a th:href="'/admin/edit/' + ${user.id}">Edit</a></td>-->
+        <td>
+            <form action="/admin/edit/user" method="get" th:align="center">
+                <label>
+                    <input hidden type="text" name="id" th:value="${user.id}"/>
+                </label>
+                <label>
+                    <input hidden type="text" name="name" th:value="${user.name}"/>
+                </label>
+                <label>
+                    <input hidden type="text" name="password" th:value="${user.password}"/>
+                </label>
+                <label>
+                    <input hidden type="text" name="role" th:value="${user.roles}"/>
+                </label>
+                <label>
+                    <input type="submit" value="EDIT">
+                </label>
+            </form>
+        </td>
+        <td>
+            <form action="/admin/remove/" method="post" th:align="center">
+                <label>
+                    <input hidden type="text" name="id" th:value="${user.id}"/>
+                </label>
+                <label>
+                    <input type="submit" value="DELETE">
+                </label>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<table class="tg" align="center">
+    <tr>
+        <form action="/admin/users/add" method="post" accept-charset="UTF-8">
+            <td>Имя: <input required type="text" name="name"></td>
+
+            <td>Пароль: <input required type="text" name="password"></td>
+
+            <!--            <td>Role of user: <input type="text" name="role"> <input type="text" name="role"></td>-->
+
+            <td>Role: <select name="role" required multiple>
+                <option disabled>Определите роли</option>
+                <option>user</option>
+                <option>admin</option>
+<!--                <option>user, admin</option>-->
+
+            </select></td>
+
+            <td><input type="submit" name="add"></td>
+        </form>
+    </tr>
+</table>
+<br>
+<br>
+<table class="tg" align="center">
+    <tr>
+        <td>
+            <form action="/logout">
+                <button type="submit">Logout</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<br>
+<br>
+<table class="tg" align="center">
+    <tr>
+        <td>
+            <form action="/user" method="get" th:align="center">
+                <label>
+                    <button type="submit">Go to user page</button>
+<!--                    <input type="submit" value="USER">-->
+                </label>
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

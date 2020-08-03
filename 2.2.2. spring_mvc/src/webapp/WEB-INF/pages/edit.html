@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+    <style type="text/css">
+        .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border-color: #e30e0e;
+            margin: auto;
+        }
+
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: #ccc;
+            color: #333;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: #ccc;
+            color: #333;
+            background-color: #f0f0f0;
+        }
+
+        .tg .tg-4eph {
+            background-color: #f9f9f9
+        }
+    </style>
+</head>
+<body>
+
+<h1 align="center">Edit User</h1>
+
+<table class="tg" align="center">
+    <tr>
+        <form action="/admin/edit/" method="post">
+
+            <td>
+                <label>
+                    <input readonly type="text" name="id" th:value="${user.id}"/>
+                </label>
+            </td>
+            <td>
+                <label>
+                    <input type="text" name="name" th:value="${user.name}"/>
+                </label>
+            </td>
+            <td>
+                <label>
+                    <input type="text" name="password" th:value="${user.password}"/>
+                </label>
+            </td>
+
+            <td><select name="role">
+                <option disabled>Выберите роль</option>
+                <option>user</option>
+                <option>admin</option>
+                <option>user, admin</option>
+
+            </select></td>
+
+            <td>
+                <label>
+                    <input type="submit" value="Submit">
+                </label>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<br>
+<br>
+
+<table class="tg" align="center">
+    <tr>
+        <td>
+            <form action="/logout">
+                <button type="submit">Logout</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml" >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    <style type="text/css">
+        .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border-color: #e30e0e;
+            margin: auto;
+        }
+
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: #ccc;
+            color: #333;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: #ccc;
+            color: #333;
+            background-color: #f0f0f0;
+        }
+
+        .tg .tg-4eph {
+            background-color: #f9f9f9
+        }
+    </style>
+</head>
+<body>
+
+<h1 align="center"><th th:text="'Hello, ' + ${user.name} + '!'"></h1>
+
+<table class="tg" align="center">
+    <tr>
+            <td>
+                <label>
+<!--                    <input type="text" name="id" th:value="${user.id}" />-->
+                    Имя: <th th:text="${user.name}"></th>
+                </label>
+            </td>
+            <td>
+                <label>
+                    Пароль: <th th:text="${user.password}"></th>
+                </label>
+            </td>
+    </tr>
+</table>
+
+<br>
+<br>
+
+<table class="tg" align="center">
+    <tr>
+        <td><form action="/logout">
+            <button type="submit">Logout</button>
+        </form></td>
+    </tr>
+</table>
+
+</body>
+</html>
